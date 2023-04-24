@@ -2,6 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:my_nubank/pages/home/widgets/my_app_bar.dart';
 import 'package:my_nubank/pages/card_app.dart';
+import 'package:my_nubank/pages/home/widgets/my_dots_app.dart';
+import 'package:my_nubank/pages/home/widgets/page_view_app.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,14 +12,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool _showMenu = false;
-  int pagAtual = 0;
+  //int pagAtual = 0;
+  int _currentIndex = 0;
   late PageController _pageController;
 
   @override
   void initState() {
     super.initState();
     _showMenu = false;
-    _pageController = PageController(initialPage: pagAtual);
+    _currentIndex = 0;
+    //_pageController = PageController(initialPage: pagAtual);
   }
 
   @override
@@ -37,6 +41,7 @@ class _HomePageState extends State<HomePage> {
               });
             },
           ),
+          /*
           Positioned(
             top: _screenHeigth * 0.20,
             height: _screenHeigth * 0.55,
@@ -51,7 +56,19 @@ class _HomePageState extends State<HomePage> {
                 CardApp(),
               ],
             ),
+          ),*/
+          PageViewApp(
+            top: _screenHeigth * 0.24,
+            onChanged: (index) {
+              setState(() {
+                _currentIndex = index;
+              });
+            },
           ),
+          Positioned(
+            top: _screenHeigth * 0.70,
+            child: MyDotsApp(curretIndex: _currentIndex,),
+          )
         ],
       ),
     );
