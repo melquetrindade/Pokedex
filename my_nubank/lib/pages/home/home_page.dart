@@ -15,6 +15,7 @@ class _HomePageState extends State<HomePage> {
   //int pagAtual = 0;
   int _currentIndex = 0;
   late PageController _pageController;
+  double _yPosition = 0;
 
   @override
   void initState() {
@@ -27,7 +28,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     double _screenHeigth = MediaQuery.of(context).size.height;
-
+    if(_yPosition == 0){
+      _yPosition = _screenHeigth * 0.24;
+    }
+    
     return Scaffold(
       backgroundColor: Colors.purple[800],
       body: Stack(
@@ -41,34 +45,34 @@ class _HomePageState extends State<HomePage> {
               });
             },
           ),
-          /*
-          Positioned(
-            top: _screenHeigth * 0.20,
-            height: _screenHeigth * 0.55,
-            left: 0,
-            right: 0,
-            child: PageView(
-              controller: _pageController,
-              physics: BouncingScrollPhysics(),
-              children: [
-                CardApp(),
-                CardApp(),
-                CardApp(),
-              ],
-            ),
-          ),*/
           PageViewApp(
-            top: _screenHeigth * 0.24,
+            top:
+                _yPosition, //!_showMenu ? _screenHeigth * 0.24 : _screenHeigth * 0.75,
             onChanged: (index) {
               setState(() {
                 _currentIndex = index;
               });
             },
+            onPanUpdate: (details) {
+              double positionBottomLimit = _screenHeigth * 0.75;
+              double positionTopLimit = _screenHeigth * 0.24;
+              setState(() {
+                _yPosition += details.delta.dy;
+
+                _yPosition = _yPosition < positionTopLimit
+                    ? positionTopLimit
+                    : _yPosition;
+
+                _yPosition = _yPosition > positionBottomLimit
+                    ? positionBottomLimit
+                    : _yPosition;
+              });
+            },
           ),
-          Positioned(
+          MyDotsApp(
+            curretIndex: _currentIndex,
             top: _screenHeigth * 0.70,
-            child: MyDotsApp(curretIndex: _currentIndex,),
-          )
+          ),
         ],
       ),
     );

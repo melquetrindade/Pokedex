@@ -22,8 +22,7 @@ class MyAppBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Image.network(
-                    "assets/imgs/logo_3.png",
+                  Image.asset("assets/imgs/logo_3.png",
                     height: 35,
                     color: Colors.white,
                   ),
