@@ -7,8 +7,10 @@ class PageViewApp extends StatelessWidget {
   //late PageController _pageController;
   final ValueChanged<int> onChanged;
   final GestureDragUpdateCallback onPanUpdate;
+  final bool showMenu;
 
-  PageViewApp({required this.top, required this.onChanged, required this.onPanUpdate});
+  PageViewApp(
+      {required this.top, required this.onChanged, required this.onPanUpdate, required this.showMenu});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class PageViewApp extends StatelessWidget {
         child: PageView(
           onPageChanged: onChanged,
           //controller: _pageController,
-          physics: BouncingScrollPhysics(),
+          physics: showMenu ? NeverScrollableScrollPhysics() : BouncingScrollPhysics(),
           children: [
             CardApp(),
             CardApp(),

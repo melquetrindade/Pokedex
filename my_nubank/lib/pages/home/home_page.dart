@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:my_nubank/pages/home/widgets/menu_app.dart';
 import 'package:my_nubank/pages/home/widgets/my_app_bar.dart';
 import 'package:my_nubank/pages/card_app.dart';
 import 'package:my_nubank/pages/home/widgets/my_dots_app.dart';
@@ -28,10 +29,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     double _screenHeigth = MediaQuery.of(context).size.height;
-    if(_yPosition == 0){
+    if (_yPosition == 0) {
       _yPosition = _screenHeigth * 0.24;
     }
-    
+
     return Scaffold(
       backgroundColor: Colors.purple[800],
       body: Stack(
@@ -42,12 +43,17 @@ class _HomePageState extends State<HomePage> {
             onTap: () {
               setState(() {
                 _showMenu = !_showMenu;
+                _yPosition =
+                    _showMenu ? _screenHeigth * 0.75 : _screenHeigth * 0.24;
               });
             },
           ),
+          MenuApp(
+            top: _screenHeigth * 0.17,
+            showMenu: _showMenu,
+          ),
           PageViewApp(
-            top:
-                _yPosition, //!_showMenu ? _screenHeigth * 0.24 : _screenHeigth * 0.75,
+            top:_yPosition,
             onChanged: (index) {
               setState(() {
                 _currentIndex = index;
@@ -56,6 +62,8 @@ class _HomePageState extends State<HomePage> {
             onPanUpdate: (details) {
               double positionBottomLimit = _screenHeigth * 0.75;
               double positionTopLimit = _screenHeigth * 0.24;
+              double midlePosition =
+                  (positionTopLimit - positionBottomLimit) / 2;
               setState(() {
                 _yPosition += details.delta.dy;
 
@@ -66,12 +74,33 @@ class _HomePageState extends State<HomePage> {
                 _yPosition = _yPosition > positionBottomLimit
                     ? positionBottomLimit
                     : _yPosition;
+
+                if (_yPosition != positionBottomLimit && details.delta.dy > 0) {
+                  _yPosition = _yPosition > positionTopLimit + midlePosition
+                      ? positionBottomLimit
+                      : _yPosition;
+                }
+
+                if (_yPosition != positionTopLimit && details.delta.dy < 0) {
+                  _yPosition =
+                      _yPosition < positionBottomLimit - midlePosition - 50
+                          ? positionTopLimit
+                          : _yPosition;
+                }
+
+                if (_yPosition == positionBottomLimit) {
+                  _showMenu = true;
+                } else if (_yPosition == positionTopLimit) {
+                  _showMenu = false;
+                }
               });
             },
+            showMenu: _showMenu,
           ),
           MyDotsApp(
             curretIndex: _currentIndex,
             top: _screenHeigth * 0.70,
+            showMenu: _showMenu,
           ),
         ],
       ),
