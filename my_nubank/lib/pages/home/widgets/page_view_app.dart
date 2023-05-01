@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../card_app.dart';
+import 'first._card.dart';
 
 class PageViewApp extends StatelessWidget {
   final double top;
@@ -15,7 +16,7 @@ class PageViewApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedPositioned(
-      duration: Duration(milliseconds: 150),
+      duration: Duration(milliseconds: 250),
       curve: Curves.easeOut,
       top: top,
       height: MediaQuery.of(context).size.height * 0.45,
@@ -28,9 +29,9 @@ class PageViewApp extends StatelessWidget {
           //controller: _pageController,
           physics: showMenu ? NeverScrollableScrollPhysics() : BouncingScrollPhysics(),
           children: [
-            CardApp(),
-            CardApp(),
-            CardApp(),
+            CardApp(child: FirstCard(),),
+            CardApp(child: FirstCard(),),
+            CardApp(child: FirstCard(),),
           ],
         ),
       ),
