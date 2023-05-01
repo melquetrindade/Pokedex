@@ -17,7 +17,7 @@ class ItemMenu extends StatelessWidget {
             top: BorderSide(width: 0.7, color: Colors.white38)),
       ),
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(primary: Colors.purple[800]),
+        style: ElevatedButton.styleFrom(primary: Colors.purple[800], elevation: 0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
