@@ -4,8 +4,7 @@ import 'package:my_nubank/pages/home/home_page.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarBrightness: Brightness.dark
-  ));
+    statusBarBrightness: Brightness.dark));
 
   runApp(MyApp());
 }
