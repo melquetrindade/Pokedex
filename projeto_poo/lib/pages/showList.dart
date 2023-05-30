@@ -162,30 +162,5 @@ class ListWidget extends HookWidget {
             )).toList(),
           )),
     );
-
-    /*ListView.builder(
-      itemCount: jsonObjects.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Container(
-              color: Colors.blue,
-              width: 100,
-              child: Text(
-                jsonObjects[index]['name'],
-                style: TextStyle(color: Colors.black),
-              )),
-          onTap: () => onItemTap(
-              '/details',
-              DetailsArg(
-                  nome: jsonObjects[index]['name'],
-                  img: jsonObjects[index]['img'],
-                  type: (jsonObjects[index]['type'] as List<dynamic>)
-                      .map((e) => e as String)
-                      .toList(),
-                  id: jsonObjects[index]['id'],
-                  num: jsonObjects[index]['num'])),
-        );
-      },
-    );*/
   }
 }

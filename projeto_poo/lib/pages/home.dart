@@ -31,17 +31,6 @@ class HomePage extends HookWidget {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          Positioned(
-              top: -60,
-              right: 0,
-              child: Opacity(
-                opacity: 0.1,
-                child: Image.network(
-                  "https://cdn.onlinewebfonts.com/svg/img_445231.png",
-                  height: 240,
-                  width: 240,
-                ),
-              )),
           ShowList(
             onItemTap: onItemTap,
           ),
