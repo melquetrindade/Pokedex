@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/homePrinc.dart';
+import 'package:flutter_application_1/pages/searchPoke.dart';
 import 'package:flutter_application_1/pages/showList.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:http/http.dart' as http;
@@ -23,8 +25,10 @@ class HomePage extends HookWidget {
           Padding(
             padding: const EdgeInsets.only(right: 10),
             child: IconButton(
-              onPressed: () {}, 
-              icon: Icon(Icons.search)),
+                onPressed: () {
+                  showSearch(context: context, delegate: Search(onItemTap: onItemTap));
+                },
+                icon: Icon(Icons.search)),
           )
         ],
       ),

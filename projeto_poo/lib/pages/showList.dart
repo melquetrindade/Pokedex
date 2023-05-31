@@ -149,17 +149,19 @@ class ListWidget extends HookWidget {
             crossAxisCount: 2,
             crossAxisSpacing: 12,
             mainAxisSpacing: 12,
-            children: jsonObjects.map((e) => PokemonItem(
-              pokemon: DetailsArg(
-                nome: e['name'], 
-                img: e['img'], 
-                type: (e['type'] as List<dynamic>)
-                      .map((e) => e as String)
-                      .toList(), 
-                id: e['id'], 
-                num: e['num']),
-                onTap: onItemTap,
-            )).toList(),
+            children: jsonObjects
+                .map((e) => PokemonItem(
+                      pokemon: DetailsArg(
+                          nome: e['name'],
+                          img: e['img'],
+                          type: (e['type'] as List<dynamic>)
+                              .map((e) => e as String)
+                              .toList(),
+                          id: e['id'],
+                          num: e['num']),
+                      onTap: onItemTap,
+                    ))
+                .toList(),
           )),
     );
   }
