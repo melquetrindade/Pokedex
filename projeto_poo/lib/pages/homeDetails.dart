@@ -113,7 +113,7 @@ class HomeDetails extends HookWidget {
                 ),
               )),
           Positioned(
-            top: 220,
+            top: 180,
             left: 45,
             right: 45,
             child: Container(
@@ -126,6 +126,52 @@ class HomeDetails extends HookWidget {
               ),
             ),
           ),
+          MyPageView()
+        ],
+      ),
+    );
+  }
+}
+
+class MyPageView extends StatefulWidget {
+  MyPageView({Key? key}) : super(key: key);
+  @override
+  _MyPageViewState createState() => _MyPageViewState();
+}
+
+class _MyPageViewState extends State<MyPageView> {
+  int pagAtual = 0;
+  late PageController pc;
+  //final ValueChanged<int> onChanged;
+
+  @override
+  void initState() {
+    super.initState();
+    pc = PageController(initialPage: pagAtual);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      bottom: 0,
+      left: 0,
+      right: 0,
+      height: 280,
+      child: PageView(
+        physics: NeverScrollableScrollPhysics(),
+        scrollDirection: Axis.vertical,
+        //controller: pc,
+        children: [
+          Container(
+            width: 100,
+            height: 100,
+            color: Colors.blue,
+          ),
+          Container(
+            width: 100,
+            height: 100,
+            color: Colors.green,
+          )
         ],
       ),
     );

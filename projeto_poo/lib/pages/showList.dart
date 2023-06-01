@@ -27,8 +27,8 @@ class DataService {
 
     var jsonString = await http.get(Uri.parse(
         'https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json'));
-    var usersJson = jsonDecode(jsonString.body) as Map<String, dynamic>;
-    final list = usersJson['pokemon'] as List<dynamic>;
+    var pokeJson = jsonDecode(jsonString.body) as Map<String, dynamic>;
+    final list = pokeJson['pokemon'] as List<dynamic>;
 
     tableStateNotifier.value = {
       'itemType': ItemType.pokemon,
@@ -65,7 +65,10 @@ class ShowList extends StatelessWidget {
               );
 
             case TableStatus.error:
-              return Text("Lascou");
+              return Text(
+                "Lascou",
+                style: TextStyle(color: Colors.blue),
+              );
           }
           return Text("...");
         });

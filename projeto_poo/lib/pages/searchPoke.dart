@@ -11,7 +11,7 @@ class Search extends SearchDelegate {
   Search({required this.onItemTap});
 
   @override
-  String get searchFieldLabel => "Enter a web address";
+  String get searchFieldLabel => "nome do pokemon";
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -104,6 +104,7 @@ class Search extends SearchDelegate {
     );
   }
 }
+
 
 /*
     List<String> matchQuery = [];
