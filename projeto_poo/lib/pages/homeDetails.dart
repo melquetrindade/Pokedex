@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/containerStatus.dart';
 import 'package:flutter_application_1/pages/pokemon_item.dart';
 import 'package:flutter_application_1/pages/showList.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -31,11 +32,13 @@ class AppBarDetails extends HookWidget {
 }
 
 class HomeDetails extends HookWidget {
+  int pagAtual = 0;
   final DetailsArg arguments;
   HomeDetails({required this.arguments});
 
   @override
   Widget build(BuildContext context) {
+    var status = useState(pagAtual);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -51,7 +54,7 @@ class HomeDetails extends HookWidget {
             top: 82,
             left: 0,
             right: 0,
-            height: 350,
+            height: 320,
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
@@ -117,7 +120,7 @@ class HomeDetails extends HookWidget {
             left: 45,
             right: 45,
             child: Container(
-              height: 300,
+              height: 200,
               child: Flexible(
                 child: Image.network(
                   arguments.img,
@@ -126,51 +129,14 @@ class HomeDetails extends HookWidget {
               ),
             ),
           ),
-          MyPageView()
-        ],
-      ),
-    );
-  }
-}
-
-class MyPageView extends StatefulWidget {
-  MyPageView({Key? key}) : super(key: key);
-  @override
-  _MyPageViewState createState() => _MyPageViewState();
-}
-
-class _MyPageViewState extends State<MyPageView> {
-  int pagAtual = 0;
-  late PageController pc;
-  //final ValueChanged<int> onChanged;
-
-  @override
-  void initState() {
-    super.initState();
-    pc = PageController(initialPage: pagAtual);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Positioned(
-      bottom: 0,
-      left: 0,
-      right: 0,
-      height: 280,
-      child: PageView(
-        physics: NeverScrollableScrollPhysics(),
-        scrollDirection: Axis.vertical,
-        //controller: pc,
-        children: [
-          Container(
-            width: 100,
-            height: 100,
-            color: Colors.blue,
+          MyDotsApp(
+            curretIndex: pagAtual,
           ),
-          Container(
-            width: 100,
-            height: 100,
-            color: Colors.green,
+          MyPageView(
+            onChanged: (value) {
+              pagAtual = value;
+              status.value = value;
+            },
           )
         ],
       ),

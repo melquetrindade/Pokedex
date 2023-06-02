@@ -104,22 +104,3 @@ class Search extends SearchDelegate {
     );
   }
 }
-
-
-/*
-    List<String> matchQuery = [];
-    for (var fruit in searchTer) {
-      if (fruit.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(fruit);
-      }
-    }
-    return ListView.builder(
-      itemCount: matchQuery.length,
-      itemBuilder: (context, index) {
-        var result = matchQuery[index];
-        return ListTile(
-          title: Text(result),
-        );
-      },
-    );
-  }*/

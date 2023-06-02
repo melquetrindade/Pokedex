@@ -25,8 +25,6 @@ class TypePokemon extends StatelessWidget {
       ),
     );
   }
-
-  toList() {}
 }
 
 class PokemonItem extends StatelessWidget {
