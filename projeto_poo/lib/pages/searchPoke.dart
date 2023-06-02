@@ -62,7 +62,14 @@ class Search extends SearchDelegate {
                               .map((e) => e as String)
                               .toList(),
                           id: e['id'],
-                          num: e['num']),
+                          num: e['num'],
+                          altura: e['height'],
+                          peso: e['weight'],
+                          spawnChance: (e['spawn_chance']).toString(),
+                          ovo: e['egg'],
+                          avgSpawns: (e['avg_spawns']).toString(),
+                          weaknesses: (e['weaknesses'] as List<dynamic>).map((e) => e as String).toList(),
+                          ),
                       onTap: onItemTap,
                     ))
                 .toList(),
@@ -96,7 +103,14 @@ class Search extends SearchDelegate {
                               .map((e) => e as String)
                               .toList(),
                           id: e['id'],
-                          num: e['num']),
+                          num: e['num'],
+                          altura: e['height'],
+                          peso: e['weight'],
+                          spawnChance: (e['spawn_chance']).toString(),
+                          ovo: e['egg'],
+                          avgSpawns: (e['avg_spawns']).toString(),
+                          weaknesses: (e['weaknesses'] as List<dynamic>).map((e) => e as String).toList(),
+                          ),
                       onTap: onItemTap,
                     ))
                 .toList(),

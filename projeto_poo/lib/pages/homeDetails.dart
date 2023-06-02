@@ -49,7 +49,14 @@ class HomeDetails extends HookWidget {
                   img: arguments.img,
                   type: arguments.type,
                   id: arguments.id,
-                  num: arguments.num)),
+                  num: arguments.num,
+                  altura: arguments.altura,
+                  peso: arguments.peso,
+                  spawnChance: arguments.spawnChance,
+                  ovo: arguments.ovo,
+                  avgSpawns: arguments.avgSpawns,
+                  weaknesses: (arguments.weaknesses as List<dynamic>).map((e) => e as String).toList(),
+                  )),
           Positioned(
             top: 82,
             left: 0,
@@ -137,6 +144,20 @@ class HomeDetails extends HookWidget {
               pagAtual = value;
               status.value = value;
             },
+            numPokemon: arguments.id,
+            pokemon: DetailsArg(
+                  nome: arguments.nome,
+                  img: arguments.img,
+                  type: arguments.type,
+                  id: arguments.id,
+                  num: arguments.num,
+                  altura: arguments.altura,
+                  peso: arguments.peso,
+                  spawnChance: arguments.spawnChance,
+                  ovo: arguments.ovo,
+                  avgSpawns: arguments.avgSpawns,
+                  weaknesses: (arguments.weaknesses as List<dynamic>).map((e) => e as String).toList(),
+                  )
           )
         ],
       ),

@@ -3,8 +3,6 @@ import 'package:flutter_application_1/pages/homePrinc.dart';
 import 'package:flutter_application_1/pages/searchPoke.dart';
 import 'package:flutter_application_1/pages/showList.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class HomePage extends HookWidget {
   final Function(String, DetailsArg) onItemTap;

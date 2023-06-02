@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/showList.dart';
+
+final dataService = DataService();
 
 class MyPageView extends StatelessWidget {
   final ValueChanged<int> onChanged;
+  final int numPokemon;
+  final DetailsArg pokemon;
 
-  MyPageView({required this.onChanged});
+  MyPageView({required this.onChanged, required this.numPokemon, required this.pokemon});
 
   @override
   Widget build(BuildContext context) {
@@ -15,15 +20,37 @@ class MyPageView extends StatelessWidget {
       child: PageView(
         onPageChanged: onChanged,
         children: [
-          Container(
-            width: 100,
-            height: 80,
-            color: Colors.blue,
-          ),
+          ShowStatus(pokemon: pokemon),
           Container(
             width: 100,
             height: 100,
             color: Colors.green,
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class ShowStatus extends StatelessWidget {
+  final DetailsArg pokemon;
+  ShowStatus({required this.pokemon});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Text(
+                "Height",
+                style: TextStyle(color: Color.fromARGB(255, 151, 151, 151)),
+              ),
+              Text(
+                pokemon.altura,
+                style: TextStyle(color: Color.fromARGB(255, 151, 151, 151)),
+              )
+            ],
           )
         ],
       ),
@@ -37,7 +64,9 @@ class MyDotsApp extends StatelessWidget {
   MyDotsApp({required this.curretIndex});
 
   Color getColor(int index) {
-    return index == curretIndex ? Colors.black : Color.fromARGB(255, 183, 183, 183);
+    return index == curretIndex
+        ? Colors.black
+        : Color.fromARGB(255, 183, 183, 183);
   }
 
   @override

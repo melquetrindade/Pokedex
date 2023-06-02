@@ -47,7 +47,14 @@ class PokemonItem extends StatelessWidget {
                       .map((e) => e as String)
                       .toList(),
                   id: pokemon.id,
-                  num: pokemon.num)),
+                  num: pokemon.num,
+                  altura: pokemon.altura,
+                  peso: pokemon.peso,
+                  spawnChance: pokemon.spawnChance,
+                  ovo: pokemon.ovo,
+                  avgSpawns: pokemon.avgSpawns,
+                  weaknesses: (pokemon.weaknesses as List<dynamic>).map((e) => e as String).toList(),
+                  )),
       child: Container(
         decoration: BoxDecoration(
             color: pokemon.baseColor!.withOpacity(0.8),
