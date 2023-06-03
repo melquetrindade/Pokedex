@@ -38,6 +38,9 @@ class ShowEvolution extends StatelessWidget {
   final int numPokemon;
   List nexEvolution = [];
   List nexEvolution2 = [];
+
+  List prevEvolution = [];
+  List prevEvolution2 = [];
   ShowEvolution({required this.pokemon, required this.numPokemon});
   @override
   Widget build(BuildContext context) {
@@ -51,17 +54,49 @@ class ShowEvolution extends StatelessWidget {
         nexEvolution2.add(e);
       }
     }
+    
+    for (var poke in pokemon.prevEvolution) {
+      if ((poke['prev_evolution'] != null) && poke['id'] == numPokemon) {
+        prevEvolution.add(poke['prev_evolution']);
+      }
+    }
+    for (var poke in prevEvolution) {
+      for (var e in poke) {
+        prevEvolution2.add(e);
+      }
+    }
+
+    print("no status: ${prevEvolution2.length}");
 
     if (nexEvolution2.length < 1) {
-      return Text("Este Pokemon não tem evolução!", style: TextStyle(color: Colors.black),);
-    }
-    else{
+      return Text(
+        "Este Pokemon não tem evolução!",
+        style: TextStyle(color: Colors.black),
+      );
+    } else if ((nexEvolution2.length > 0) && (prevEvolution2.length > 0)) {
+      return Column(
+          children: [
+            Container(
+              child: Column(
+              children: prevEvolution2
+                  .map((e) => DetailsEvolution(numPoke: e['num']))
+                  .toList()),
+            ),
+            Container(
+              child: Column(
+              children: nexEvolution2
+                  .map((e) => DetailsEvolution(numPoke: e['num']))
+                  .toList()),
+            ),
+          ]
+      );
+    } else {
       return Container(
-      child: Column(
-          children: nexEvolution2
-              .map((e) => DetailsEvolution(numPoke: e['num']))
-              .toList()),
-    );
+        child: Column(
+            children: nexEvolution2
+                .map((e) => DetailsEvolution(numPoke: e['num']))
+                .toList()),
+      );
     }
   }
 }

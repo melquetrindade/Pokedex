@@ -47,21 +47,22 @@ class HomeDetails extends HookWidget {
         children: [
           AppBarDetails(
               pokemon: DetailsArg(
-            nome: arguments.nome,
-            img: arguments.img,
-            type: arguments.type,
-            id: arguments.id,
-            num: arguments.num,
-            altura: arguments.altura,
-            peso: arguments.peso,
-            spawnChance: arguments.spawnChance,
-            ovo: arguments.ovo,
-            avgSpawns: arguments.avgSpawns,
-            weaknesses: (arguments.weaknesses as List<dynamic>)
-                .map((e) => e as String)
-                .toList(),
-            nexEvolution: arguments.nexEvolution
-          )),
+                  nome: arguments.nome,
+                  img: arguments.img,
+                  type: arguments.type,
+                  id: arguments.id,
+                  num: arguments.num,
+                  altura: arguments.altura,
+                  peso: arguments.peso,
+                  spawnChance: arguments.spawnChance,
+                  ovo: arguments.ovo,
+                  avgSpawns: arguments.avgSpawns,
+                  weaknesses: (arguments.weaknesses as List<dynamic>)
+                      .map((e) => e as String)
+                      .toList(),
+                  nexEvolution: arguments.nexEvolution,
+                  prevEvolution: arguments.prevEvolution
+                  )),
           Positioned(
             top: 82,
             left: 0,
@@ -135,7 +136,7 @@ class HomeDetails extends HookWidget {
               height: 200,
               child: Flexible(
                 child: Image.network(
-                  arguments.img,
+                  'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${arguments.num}.png',
                   fit: BoxFit.contain,
                 ),
               ),
@@ -144,7 +145,6 @@ class HomeDetails extends HookWidget {
           MyDotsApp(
             curretIndex: pagAtual,
           ),
-          
           MyPageView(
             onChanged: (value) {
               pagAtual = value;
@@ -152,21 +152,22 @@ class HomeDetails extends HookWidget {
             },
             numPokemon: arguments.id,
             pokemon: DetailsArg(
-              nome: arguments.nome,
-              img: arguments.img,
-              type: arguments.type,
-              id: arguments.id,
-              num: arguments.num,
-              altura: arguments.altura,
-              peso: arguments.peso,
-              spawnChance: arguments.spawnChance,
-              ovo: arguments.ovo,
-              avgSpawns: arguments.avgSpawns,
-              weaknesses: (arguments.weaknesses as List<dynamic>)
-                  .map((e) => e as String)
-                  .toList(),
-              nexEvolution: arguments.nexEvolution
-            ),
+                nome: arguments.nome,
+                img: arguments.img,
+                type: arguments.type,
+                id: arguments.id,
+                num: arguments.num,
+                altura: arguments.altura,
+                peso: arguments.peso,
+                spawnChance: arguments.spawnChance,
+                ovo: arguments.ovo,
+                avgSpawns: arguments.avgSpawns,
+                weaknesses: (arguments.weaknesses as List<dynamic>)
+                    .map((e) => e as String)
+                    .toList(),
+                nexEvolution: arguments.nexEvolution,
+                prevEvolution: arguments.prevEvolution
+                ),
           )
         ],
       ),

@@ -49,9 +49,14 @@ class Search extends SearchDelegate {
     }
     List nex = [];
     for (var poke in pokemon) {
-      print("entrou");
       if (poke['next_evolution'] != null) {
         nex.add(poke);
+      }
+    }
+    List prev = [];
+    for (var poke in pokemon) {
+      if (poke['prev_evolution'] != null) {
+        prev.add(poke);
       }
     }
     
@@ -80,7 +85,8 @@ class Search extends SearchDelegate {
                         weaknesses: (e['weaknesses'] as List<dynamic>)
                             .map((e) => e as String)
                             .toList(),
-                        nexEvolution: nex
+                        nexEvolution: nex,
+                        prevEvolution: prev
                       ),
                       onTap: onItemTap,
                     ))
@@ -101,11 +107,18 @@ class Search extends SearchDelegate {
     }
     List nex = [];
     for (var poke in pokemon) {
-      print("entrou");
       if (poke['next_evolution'] != null) {
         nex.add(poke);
       }
     }
+
+    List prev = [];
+    for (var poke in pokemon) {
+      if (poke['prev_evolution'] != null) {
+        prev.add(poke);
+      }
+    }
+
     return Scaffold(
       body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -131,7 +144,9 @@ class Search extends SearchDelegate {
                           weaknesses: (e['weaknesses'] as List<dynamic>)
                               .map((e) => e as String)
                               .toList(),
-                          nexEvolution: nex),
+                          nexEvolution: nex,
+                          prevEvolution: prev
+                          ),
                       onTap: onItemTap,
                     ))
                 .toList(),

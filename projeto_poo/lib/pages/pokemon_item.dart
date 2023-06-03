@@ -55,7 +55,8 @@ class PokemonItem extends StatelessWidget {
                   ovo: pokemon.ovo,
                   avgSpawns: pokemon.avgSpawns,
                   weaknesses: (pokemon.weaknesses as List<dynamic>).map((e) => e as String).toList(),
-                  nexEvolution: pokemon.nexEvolution
+                  nexEvolution: pokemon.nexEvolution,
+                  prevEvolution: pokemon.prevEvolution
                   )),
       child: Container(
         decoration: BoxDecoration(

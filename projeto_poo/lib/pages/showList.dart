@@ -88,6 +88,7 @@ class DetailsArg {
   String avgSpawns;
   List<String> weaknesses;
   List nexEvolution;
+  List prevEvolution;
 
   Color? get baseColor => _color(type: type[0]);
   String get image =>
@@ -105,7 +106,8 @@ class DetailsArg {
       required this.ovo,
       required this.avgSpawns,
       required this.weaknesses,
-      required this.nexEvolution});
+      required this.nexEvolution,
+      required this.prevEvolution});
 
   static Color? _color({required String type}) {
     switch (type) {
@@ -155,29 +157,25 @@ class ListWidget extends HookWidget {
   final List jsonObjects;
   final Function(String, DetailsArg) onItemTap;
   List nex = [];
-
-  /*
-  void selc() {
-    jsonObjects.map((e) {
-      if (e['next_evolution'] != null) {
-        print("entrou");
-        nex.add(e);
-      }
-    });
-  }*/
+  List prev = [];
 
   ListWidget({this.jsonObjects = const [], required this.onItemTap});
 
   @override
   Widget build(BuildContext context) {
-    //selc();
     for (var poke in jsonObjects) {
-      print("entrou");
       if (poke['next_evolution'] != null) {
         nex.add(poke);
       }
     }
-    print("no list: ${nex.length}");
+
+    for (var poke in jsonObjects) {
+      if (poke['prev_evolution'] != null) {
+        prev.add(poke);
+      }
+    }
+
+    print("no list: ${prev.length}");
     return Scaffold(
       body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -203,7 +201,9 @@ class ListWidget extends HookWidget {
                           weaknesses: (e['weaknesses'] as List<dynamic>)
                               .map((e) => e as String)
                               .toList(),
-                          nexEvolution: nex),
+                          nexEvolution: nex,
+                          prevEvolution: prev
+                          ),
                       onTap: onItemTap,
                     ))
                 .toList(),
