@@ -38,6 +38,7 @@ class PokemonItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return GestureDetector(
       onTap: () => onTap('/details',
               DetailsArg(
@@ -54,6 +55,7 @@ class PokemonItem extends StatelessWidget {
                   ovo: pokemon.ovo,
                   avgSpawns: pokemon.avgSpawns,
                   weaknesses: (pokemon.weaknesses as List<dynamic>).map((e) => e as String).toList(),
+                  nexEvolution: pokemon.nexEvolution
                   )),
       child: Container(
         decoration: BoxDecoration(

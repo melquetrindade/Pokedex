@@ -38,6 +38,7 @@ class Search extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
+    List nexEvolution = [];
     dataService.carregarPokemon();
     pokemon = dataService.tableStateNotifier.value['dataObjects'];
     List matchQuery = [];
@@ -46,6 +47,14 @@ class Search extends SearchDelegate {
         matchQuery.add(poke);
       }
     }
+    List nex = [];
+    for (var poke in pokemon) {
+      print("entrou");
+      if (poke['next_evolution'] != null) {
+        nex.add(poke);
+      }
+    }
+    
     return Scaffold(
       body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -56,20 +65,23 @@ class Search extends SearchDelegate {
             children: matchQuery
                 .map((e) => PokemonItem(
                       pokemon: DetailsArg(
-                          nome: e['name'],
-                          img: e['img'],
-                          type: (e['type'] as List<dynamic>)
-                              .map((e) => e as String)
-                              .toList(),
-                          id: e['id'],
-                          num: e['num'],
-                          altura: e['height'],
-                          peso: e['weight'],
-                          spawnChance: (e['spawn_chance']).toString(),
-                          ovo: e['egg'],
-                          avgSpawns: (e['avg_spawns']).toString(),
-                          weaknesses: (e['weaknesses'] as List<dynamic>).map((e) => e as String).toList(),
-                          ),
+                        nome: e['name'],
+                        img: e['img'],
+                        type: (e['type'] as List<dynamic>)
+                            .map((e) => e as String)
+                            .toList(),
+                        id: e['id'],
+                        num: e['num'],
+                        altura: e['height'],
+                        peso: e['weight'],
+                        spawnChance: (e['spawn_chance']).toString(),
+                        ovo: e['egg'],
+                        avgSpawns: (e['avg_spawns']).toString(),
+                        weaknesses: (e['weaknesses'] as List<dynamic>)
+                            .map((e) => e as String)
+                            .toList(),
+                        nexEvolution: nex
+                      ),
                       onTap: onItemTap,
                     ))
                 .toList(),
@@ -87,6 +99,13 @@ class Search extends SearchDelegate {
         matchQuery.add(poke);
       }
     }
+    List nex = [];
+    for (var poke in pokemon) {
+      print("entrou");
+      if (poke['next_evolution'] != null) {
+        nex.add(poke);
+      }
+    }
     return Scaffold(
       body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -109,8 +128,10 @@ class Search extends SearchDelegate {
                           spawnChance: (e['spawn_chance']).toString(),
                           ovo: e['egg'],
                           avgSpawns: (e['avg_spawns']).toString(),
-                          weaknesses: (e['weaknesses'] as List<dynamic>).map((e) => e as String).toList(),
-                          ),
+                          weaknesses: (e['weaknesses'] as List<dynamic>)
+                              .map((e) => e as String)
+                              .toList(),
+                          nexEvolution: nex),
                       onTap: onItemTap,
                     ))
                 .toList(),

@@ -87,6 +87,7 @@ class DetailsArg {
   String ovo;
   String avgSpawns;
   List<String> weaknesses;
+  List nexEvolution;
 
   Color? get baseColor => _color(type: type[0]);
   String get image =>
@@ -104,7 +105,7 @@ class DetailsArg {
       required this.ovo,
       required this.avgSpawns,
       required this.weaknesses,
-      });
+      required this.nexEvolution});
 
   static Color? _color({required String type}) {
     switch (type) {
@@ -153,11 +154,30 @@ class DetailsArg {
 class ListWidget extends HookWidget {
   final List jsonObjects;
   final Function(String, DetailsArg) onItemTap;
+  List nex = [];
+
+  /*
+  void selc() {
+    jsonObjects.map((e) {
+      if (e['next_evolution'] != null) {
+        print("entrou");
+        nex.add(e);
+      }
+    });
+  }*/
 
   ListWidget({this.jsonObjects = const [], required this.onItemTap});
 
   @override
   Widget build(BuildContext context) {
+    //selc();
+    for (var poke in jsonObjects) {
+      print("entrou");
+      if (poke['next_evolution'] != null) {
+        nex.add(poke);
+      }
+    }
+    print("no list: ${nex.length}");
     return Scaffold(
       body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -180,8 +200,10 @@ class ListWidget extends HookWidget {
                           spawnChance: (e['spawn_chance']).toString(),
                           ovo: e['egg'],
                           avgSpawns: (e['avg_spawns']).toString(),
-                          weaknesses: (e['weaknesses'] as List<dynamic>).map((e) => e as String).toList(),
-                          ),
+                          weaknesses: (e['weaknesses'] as List<dynamic>)
+                              .map((e) => e as String)
+                              .toList(),
+                          nexEvolution: nex),
                       onTap: onItemTap,
                     ))
                 .toList(),
@@ -189,12 +211,3 @@ class ListWidget extends HookWidget {
     );
   }
 }
-/*
-required this.altura,
-      required this.peso,
-      required this.spawnChance,
-      required this.ovo,
-      required this.avgSpawns,
-      required this.weaknesses,
-      required this.evolution
- */

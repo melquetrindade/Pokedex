@@ -34,29 +34,34 @@ class AppBarDetails extends HookWidget {
 class HomeDetails extends HookWidget {
   int pagAtual = 0;
   final DetailsArg arguments;
+
   HomeDetails({required this.arguments});
 
   @override
   Widget build(BuildContext context) {
     var status = useState(pagAtual);
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
         children: [
           AppBarDetails(
               pokemon: DetailsArg(
-                  nome: arguments.nome,
-                  img: arguments.img,
-                  type: arguments.type,
-                  id: arguments.id,
-                  num: arguments.num,
-                  altura: arguments.altura,
-                  peso: arguments.peso,
-                  spawnChance: arguments.spawnChance,
-                  ovo: arguments.ovo,
-                  avgSpawns: arguments.avgSpawns,
-                  weaknesses: (arguments.weaknesses as List<dynamic>).map((e) => e as String).toList(),
-                  )),
+            nome: arguments.nome,
+            img: arguments.img,
+            type: arguments.type,
+            id: arguments.id,
+            num: arguments.num,
+            altura: arguments.altura,
+            peso: arguments.peso,
+            spawnChance: arguments.spawnChance,
+            ovo: arguments.ovo,
+            avgSpawns: arguments.avgSpawns,
+            weaknesses: (arguments.weaknesses as List<dynamic>)
+                .map((e) => e as String)
+                .toList(),
+            nexEvolution: arguments.nexEvolution
+          )),
           Positioned(
             top: 82,
             left: 0,
@@ -139,6 +144,7 @@ class HomeDetails extends HookWidget {
           MyDotsApp(
             curretIndex: pagAtual,
           ),
+          
           MyPageView(
             onChanged: (value) {
               pagAtual = value;
@@ -146,18 +152,21 @@ class HomeDetails extends HookWidget {
             },
             numPokemon: arguments.id,
             pokemon: DetailsArg(
-                  nome: arguments.nome,
-                  img: arguments.img,
-                  type: arguments.type,
-                  id: arguments.id,
-                  num: arguments.num,
-                  altura: arguments.altura,
-                  peso: arguments.peso,
-                  spawnChance: arguments.spawnChance,
-                  ovo: arguments.ovo,
-                  avgSpawns: arguments.avgSpawns,
-                  weaknesses: (arguments.weaknesses as List<dynamic>).map((e) => e as String).toList(),
-                  )
+              nome: arguments.nome,
+              img: arguments.img,
+              type: arguments.type,
+              id: arguments.id,
+              num: arguments.num,
+              altura: arguments.altura,
+              peso: arguments.peso,
+              spawnChance: arguments.spawnChance,
+              ovo: arguments.ovo,
+              avgSpawns: arguments.avgSpawns,
+              weaknesses: (arguments.weaknesses as List<dynamic>)
+                  .map((e) => e as String)
+                  .toList(),
+              nexEvolution: arguments.nexEvolution
+            ),
           )
         ],
       ),

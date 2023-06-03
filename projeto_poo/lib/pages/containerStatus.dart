@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/showList.dart';
 
-final dataService = DataService();
-
 class MyPageView extends StatelessWidget {
   final ValueChanged<int> onChanged;
   final int numPokemon;
   final DetailsArg pokemon;
 
-  MyPageView({required this.onChanged, required this.numPokemon, required this.pokemon});
+  MyPageView({
+    required this.onChanged,
+    required this.numPokemon,
+    required this.pokemon,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +23,60 @@ class MyPageView extends StatelessWidget {
         onPageChanged: onChanged,
         children: [
           ShowStatus(pokemon: pokemon),
-          Container(
-            width: 100,
-            height: 100,
-            color: Colors.green,
+          ShowEvolution(
+            pokemon: pokemon,
+            numPokemon: numPokemon,
           )
         ],
+      ),
+    );
+  }
+}
+
+class ShowEvolution extends StatelessWidget {
+  final DetailsArg pokemon;
+  final int numPokemon;
+  List nexEvolution = [];
+  List nexEvolution2 = [];
+  ShowEvolution({required this.pokemon, required this.numPokemon});
+  @override
+  Widget build(BuildContext context) {
+    for (var poke in pokemon.nexEvolution) {
+      if ((poke['next_evolution'] != null) && poke['id'] == numPokemon) {
+        nexEvolution.add(poke['next_evolution']);
+      }
+    }
+    for (var poke in nexEvolution) {
+      for (var e in poke) {
+        nexEvolution2.add(e);
+      }
+    }
+
+    if (nexEvolution2.length < 1) {
+      return Text("Este Pokemon não tem evolução!", style: TextStyle(color: Colors.black),);
+    }
+    else{
+      return Container(
+      child: Column(
+          children: nexEvolution2
+              .map((e) => DetailsEvolution(numPoke: e['num']))
+              .toList()),
+    );
+    }
+  }
+}
+
+class DetailsEvolution extends StatelessWidget {
+  final String numPoke;
+  DetailsEvolution({required this.numPoke});
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 15),
+      child: Image.network(
+        'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$numPoke.png',
+        width: 100,
+        height: 100,
       ),
     );
   }
@@ -75,7 +125,6 @@ class MyDotsApp extends StatelessWidget {
       Positioned(
         top: 400,
         child: Container(
-          //color: Colors.red,
           width: MediaQuery.of(context).size.width,
           height: 50,
           child: Row(
