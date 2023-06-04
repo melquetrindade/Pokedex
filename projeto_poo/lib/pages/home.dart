@@ -14,7 +14,6 @@ class HomePage extends HookWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        //backgroundColor: Colors.grey,
         title: Padding(
           padding: const EdgeInsets.only(left: 10),
           child: const Text("Pokedex"),
