@@ -34,6 +34,7 @@ class MyPageView extends StatelessWidget {
 }
 
 class ShowEvolution extends StatelessWidget {
+
   final DetailsArg pokemon;
   final int numPokemon;
   List nexEvolution = [];
@@ -42,8 +43,11 @@ class ShowEvolution extends StatelessWidget {
   List prevEvolution = [];
   List prevEvolution2 = [];
   ShowEvolution({required this.pokemon, required this.numPokemon});
+
   @override
   Widget build(BuildContext context) {
+
+    // verifica se o pokemon tem nexEvolution e adiciona na lista
     for (var poke in pokemon.nexEvolution) {
       if ((poke['next_evolution'] != null) && poke['id'] == numPokemon) {
         nexEvolution.add(poke['next_evolution']);
@@ -55,6 +59,7 @@ class ShowEvolution extends StatelessWidget {
       }
     }
     
+    // verifica se o pokemon tem prevEvolution e adiciona na lista
     for (var poke in pokemon.prevEvolution) {
       if ((poke['prev_evolution'] != null) && poke['id'] == numPokemon) {
         prevEvolution.add(poke['prev_evolution']);
@@ -66,36 +71,35 @@ class ShowEvolution extends StatelessWidget {
       }
     }
 
-    print("no status: ${prevEvolution2.length}");
-
+    // birfucação para verifica as quantidades de evoluções
     if (nexEvolution2.length < 1) {
-      return Text(
+      return const Text(
         "Este Pokemon não tem evolução!",
         style: TextStyle(color: Colors.black),
       );
     } else if ((nexEvolution2.length > 0) && (prevEvolution2.length > 0)) {
-      return Column(
-          children: [
-            Container(
-              child: Column(
-              children: prevEvolution2
-                  .map((e) => DetailsEvolution(numPoke: e['num']))
-                  .toList()),
-            ),
-            Container(
-              child: Column(
-              children: nexEvolution2
-                  .map((e) => DetailsEvolution(numPoke: e['num']))
-                  .toList()),
-            ),
-          ]
-      );
-    } else {
-      return Container(
-        child: Column(
+      return ListView(
+        scrollDirection: Axis.vertical,
+        children:  [
+          Container(
+            child: Column(
+            children: prevEvolution2
+                .map((e) => DetailsEvolution(numPoke: e['num']))
+                .toList()),
+          ),
+          Container(
+            child: Column(
             children: nexEvolution2
                 .map((e) => DetailsEvolution(numPoke: e['num']))
                 .toList()),
+          ),
+        ]
+      );
+    } else {
+      return ListView(
+        children: nexEvolution2
+            .map((e) => DetailsEvolution(numPoke: e['num']))
+            .toList()
       );
     }
   }
@@ -117,31 +121,135 @@ class DetailsEvolution extends StatelessWidget {
   }
 }
 
+
+
 class ShowStatus extends StatelessWidget {
   final DetailsArg pokemon;
   ShowStatus({required this.pokemon});
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Text(
-                "Height",
-                style: TextStyle(color: Color.fromARGB(255, 151, 151, 151)),
-              ),
-              Text(
-                pokemon.altura,
-                style: TextStyle(color: Color.fromARGB(255, 151, 151, 151)),
-              )
-            ],
-          )
-        ],
+    return Padding(
+      padding: const EdgeInsets.only(left: 65, right: 65),
+      child: Container(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 15),
+          child: Container(
+            //color: Colors.blue,
+            //width: 50,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 5, bottom: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Altura",
+                        style: TextStyle(color: Color.fromARGB(255, 151, 151, 151)),
+                      ),
+                      Text(
+                        pokemon.altura,
+                        style: TextStyle(color: Colors.black),
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 5, bottom: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Peso",
+                        style: TextStyle(color: Color.fromARGB(255, 151, 151, 151)),
+                      ),
+                      Text(
+                        pokemon.peso,
+                        style: TextStyle(color: Colors.black),
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 5, bottom: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Spawn Chance",
+                        style: TextStyle(color: Color.fromARGB(255, 151, 151, 151)),
+                      ),
+                      Text(
+                        pokemon.spawnChance,
+                        style: TextStyle(color: Colors.black),
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 5, bottom: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Ovo",
+                        style: TextStyle(color: Color.fromARGB(255, 151, 151, 151)),
+                      ),
+                      Text(
+                        pokemon.ovo,
+                        style: TextStyle(color: Colors.black),
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 5, bottom: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Avg Spawns",
+                        style: TextStyle(color: Color.fromARGB(255, 151, 151, 151)),
+                      ),
+                      Text(
+                        pokemon.avgSpawns,
+                        style: TextStyle(color: Colors.black),
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 5, bottom: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Fraquezas",
+                        style: TextStyle(color: Color.fromARGB(255, 151, 151, 151)),
+                      ),
+                      Column(
+                        children: 
+                          pokemon.weaknesses.map((e) => Text(e, style: TextStyle(color: Colors.black),)).toList()
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
 }
+
+/*String peso;
+  String spawnChance;
+  String ovo;
+  String avgSpawns;
+  List<String> weaknesses;
+ */
+
 
 class MyDotsApp extends StatelessWidget {
   final int curretIndex;
@@ -178,7 +286,7 @@ class MyDotsApp extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 25, bottom: 12),
                 child: Text(
-                  "Evolução",
+                  "Evoluções",
                   style: TextStyle(
                       color: getColor(1),
                       fontSize: 17,

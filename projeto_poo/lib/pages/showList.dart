@@ -174,8 +174,7 @@ class ListWidget extends HookWidget {
         prev.add(poke);
       }
     }
-
-    print("no list: ${prev.length}");
+    
     return Scaffold(
       body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
