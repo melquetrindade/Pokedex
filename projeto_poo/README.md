@@ -1,16 +1,9 @@
-# flutter_application_1
+# Pokedex
 
-A new Flutter project.
+Repositório destinado para a criação do projeto da disciplina de Programação Orientada a Objetos I. O projeto desenvolvido consiste em um aplicativo sobre o anime Pokemon. O app utiliza de dados de uma API.
 
-## Getting Started
+## Para rodar o projeto, basta seguir os passos abaixo: 
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Copie o link do repositório.
+2. Abra o terminal da sua e escolha uma pasta para guarda o projeto.
+3. Digite no terminal: git clone <link do repositório> 
