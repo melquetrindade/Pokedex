@@ -16,5 +16,11 @@ Repositório destinado para a criação do projeto da disciplina de Programaçã
 5. Digite no terminal ou similar: flutter run
 
 <div align="center">
-<img src="https://github.com/melquetrindade/Projetos_Flutter/assets/111925696/68f4b49c-e7fb-4bfe-ab68-32863f59fbfd" width="800px" heigth="300" />
+<img src="https://github.com/melquetrindade/Projetos_Flutter/assets/111925696/2cdf5d15-0df7-4a2a-be7b-614b9766c6de" width="800px" heigth="300" />
+</div>
+
+Se os passos foram seguidos corretamente então o aplicativo deve ter sido executa com sucesso.
+
+<div align="center">
+<img src="https://github.com/melquetrindade/Projetos_Flutter/assets/111925696/2cdf5d15-0df7-4a2a-be7b-614b9766c6de" width="800px" heigth="300" />
 </div>
