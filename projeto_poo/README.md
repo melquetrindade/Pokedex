@@ -9,5 +9,12 @@ Repositório destinado para a criação do projeto da disciplina de Programaçã
 3. Digite no terminal: git clone <link do repositório>.
 
 <div align="center">
-<img src="https://github.com/melquetrindade/Projetos_Flutter/issues/1#issue-1752760949.png" width="400px" />
+<img src="https://github.com/melquetrindade/Projetos_Flutter/assets/111925696/68f4b49c-e7fb-4bfe-ab68-32863f59fbfd" width="800px" heigth="300" />
+</div>
+
+4. Abra a pasta do repositório clonado no terminal ou similar.
+5. Digite no terminal ou similar: flutter run
+
+<div align="center">
+<img src="https://github.com/melquetrindade/Projetos_Flutter/assets/111925696/68f4b49c-e7fb-4bfe-ab68-32863f59fbfd" width="800px" heigth="300" />
 </div>
