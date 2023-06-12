@@ -6,4 +6,8 @@ Repositório destinado para a criação do projeto da disciplina de Programaçã
 
 1. Copie o link do repositório.
 2. Abra o terminal da sua e escolha uma pasta para guarda o projeto.
-3. Digite no terminal: git clone <link do repositório> 
+3. Digite no terminal: git clone <link do repositório>.
+
+<div align="center">
+<img src="https://github.com/melquetrindade/Projetos_Flutter/issues/1#issue-1752760949.png" width="400px" />
+</div>
