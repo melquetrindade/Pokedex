@@ -29,7 +29,7 @@ Esse projeto está sob a licença MIT.
 ```[git clone https://github.com/melquetrindade/Projetos_Flutter.git]```
 
 ## 2° Passo: Acessar a pasta 
-```cd miniprojeto```
+```cd projeto_poo```
 
 ## 3° Passo: Instalar as dependências necessárias
 ```flutter pub get```
